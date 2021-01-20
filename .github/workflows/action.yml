@@ -1,0 +1,18 @@
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Start Up
+        uses: actions/checkout@v2
+      - name: Pull Libraries
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Test
+        run: ./main/action
+
+name: Ci
+
+on:
+  schedule:
+    - cron: "25 2/3 * * *"
